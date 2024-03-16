@@ -16,6 +16,9 @@ import {createApp} from 'vue/dist/vue.esm-bundler'
 import PostComponent from './components/PostComponent.vue'
 import './bootstrap';
 
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap";
+
 const app = createApp({
     el: '#app',
     components:{

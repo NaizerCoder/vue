@@ -1,15 +1,26 @@
 <template>
-    <SinglePostComponent></SinglePostComponent>
-    <div>
-        {{ users[2].age }}
-    </div>
 
     <div>
         <button @click="sayHello">Hello</button>
         <button @click="sayHi">Hi</button>
     </div>
 
-    <div>{{text}}</div>
+    <table class="table table-striped">
+        <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Age</th>
+            <th scope="col">City</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="user in users">
+            <td>{{ user.name }}</td>
+            <td>{{ user.age }}</td>
+            <td>{{user.city}}</td>
+        </tr>
+        </tbody>
+    </table>
 
 </template>
 
@@ -27,7 +38,21 @@ export default {
                 name: 'Alex',
                 city: 'Belgorod'
             },
-            users: [  {age: 16},  {age: 20},  {age: 23},  {age: 30} ]
+            users: [
+                {   name: 'Alex',
+                    age: 36,
+                    city: 'Belgorod',
+                },
+                {   name: 'Irina',
+                    age: 35,
+                    city: 'Gubkin',
+                },
+                {   name: 'Michel',
+                    age: 3,
+                    city: 'St. Oskol',
+                },
+
+            ]
 
         }
     },
