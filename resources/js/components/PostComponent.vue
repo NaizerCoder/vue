@@ -3,7 +3,7 @@
         <button @click="sayHello">Hello</button>
         <button @click="sayHi">Hi</button>
     </div>
-    <!-- <table class="table table-striped">
+    <table class="table table-striped">
         <thead>
         <tr>
             <th scope="col">Name</th>
@@ -11,16 +11,14 @@
             <th scope="col">City</th>
         </tr>
         </thead>
-        <tbody v-for="user in ageUsersLess">
+        <tbody v-for="person in persons">
         <tr>
-            <td>{{ user.name }}</td>
-            <td>{{ user.age }}</td>
-            <td>{{ user.city }}</td>
+            <td>{{ person.name }}</td>
+            <td>{{ person.age }}</td>
+            <td>{{ person.city }}</td>
         </tr>
         </tbody>
     </table>
--->
-
 
 </template>
 
@@ -31,8 +29,7 @@ export default {
     name: "PostComponent",
     data() {
         return {
-            person: null,
-
+            persons: null,
         }
     },
 
@@ -40,9 +37,12 @@ export default {
 
         getPosts() {
             axios.get('/person')
-                .then( item => { console.log ( this.person = item.data) }
-
+                .then( item => { this.persons = item.data }
+                  /*  .then(function(data){
+                        this.persons = data
+                    }*/
                 )
+
         }
     },
 

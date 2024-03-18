@@ -9,11 +9,11 @@ class PersonController extends Controller
     public function __invoke()
     {
         $persons = [
-            ['name' => 'Alex',
+            ['name' => 'Dmitrij',
                 'age' => '22',
                 'city' => 'Belgorod'
             ],
-            ['name' => 'Irina',
+            ['name' => 'Elena',
                 'age' => '34',
                 'city' => 'Moscow'
             ],
