@@ -1,7 +1,5 @@
 <template>
     <div>
-        <meta name="csrf-token" content="{{ csrf_token() }}">
-
         <div class="w-25 m-1">
             <input type="text" class="form-control" v-model="name" id="name" placeholder="name">
         </div>
