@@ -3,17 +3,39 @@
         <table class="table">
             <thead>
             <tr>
+                <th scope="col">ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Age</th>
                 <th scope="col">Job</th>
             </tr>
             </thead>
             <tbody>
-            <tr v-for="people in persons">
-                <td>{{ people.name }}</td>
-                <td>{{ people.age }}</td>
-                <td>{{ people.job }}</td>
-            </tr>
+            <template v-for="people in persons">
+                <tr>
+                    <th scope="row">{{ people.id }}</th>
+                    <td>{{ people.name }}</td>
+                    <td>{{ people.age }}</td>
+                    <td>{{ people.job }}</td>
+                    <td>
+                        <a href="#" @click.prevent="setPersonId(people.id)" class="btn btn-success">Edit</a>
+                    </td>
+                </tr>
+                <tr :class="isEdit(people.id) ? '' : 'd-none' ">
+                    <th scope="row">{{ people.id }}</th>
+                    <td>
+                        <input type="text" :value="people.name" class="form-control">
+                    </td>
+                    <td>
+                        <input type="text" :value="people.age" class="form-control">
+                    </td>
+                    <td>
+                        <input type="text" :value="people.job" class="form-control">
+                    </td>
+                    <td>
+                        <a href="#" @click.prevent="updatePerson(people.id, people.name, people.age, people.job)" class="btn btn-success">Update</a>
+                    </td>
+                </tr>
+            </template>
             </tbody>
         </table>
 
@@ -25,6 +47,10 @@ export default {
     data() {
         return {
             persons: null,
+            editPerson:null,
+            name:'',
+            age:null,
+            job:''
         }
     },
 
@@ -33,11 +59,35 @@ export default {
     },
 
     methods: {
-        getPerson(){
+        getPerson() {
             axios.get('/api/people')
-                .then( result => {
+                .then(result => {
                     this.persons = result.data
                 })
+        },
+
+        updatePerson(id, name, age, job){
+
+
+
+            this.editPerson = null
+            axios.patch(`api/people/${id}`, {name: name, age: age, job: job})
+                .then( result => {
+                    console.log(result.data);
+                    //this.getPerson()
+                })
+        },
+
+        setPersonId(id) {
+            this.editPerson = id
+            // this.name = name
+            // this.age = age
+            // this.job = job
+        },
+
+        isEdit(id){
+
+            return this.editPerson === id
         }
     },
 }
