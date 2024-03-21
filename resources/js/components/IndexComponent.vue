@@ -25,25 +25,7 @@
                         <a href="#" @click.prevent="deletePerson(people.id)" class="btn btn-danger">Delete</a>
                     </td>
                 </tr>
-                <tr :class="isEdit(people.id) ? '' : 'd-none' ">
-                    <th scope="row">{{ people.id }}</th>
-                    <td>
-<!--                        <input type="text" :value="people.name" class="form-control">-->
-                        <input type="text" v-model="name" class="form-control">
-                    </td>
-                    <td>
-<!--                        <input type="text" :value="people.age" class="form-control">-->
-                        <input type="number" v-model="age" class="form-control">
-                    </td>
-                    <td>
-<!--                        <input type="text" :value="people.job" class="form-control">-->
-                        <input type="text" v-model="job" class="form-control">
-                    </td>
-                    <td>
-                        <a href="#" @click.prevent="updatePerson(people.id)" class="btn btn-success">Update</a>
-<!--                        <a href="#" @click.prevent="updatePerson(people.id, people.name, people.age, people.job)" class="btn btn-success">Update</a>-->
-                    </td>
-                </tr>
+                <EditComponent :people="people" :ref="`edit_${people.id}`"></EditComponent>
             </template>
             </tbody>
         </table>
@@ -51,6 +33,7 @@
     </div>
 </template>
 <script>
+import EditComponent from "@/components/EditComponent.vue";
 export default {
 
     name: "IndexComponent",
@@ -97,13 +80,15 @@ export default {
 
         setPersonId(id, name, age, job) {
             this.editPerson = id
-            this.name = name
-            this.age = age
-            this.job = job
+            let editName = `edit_${id}`
+            let fullEditName = this.$refs[editName][0]
+            console.log(this.$refs[editName][0]) //обращение к элементу объекта в кв. скобках [editName], т.к. обращаемяся к переменной fullEditName
+            fullEditName.name = name
+            fullEditName.age = age
+            fullEditName.job = job
         },
 
         isEdit(id){
-
             return this.editPerson === id
         },
 
@@ -111,6 +96,9 @@ export default {
             console.log(`This is IndexComponent from ${from}`);
         }
     },
+    components: {
+        EditComponent
+    }
 }
 </script>
 <style scoped>
