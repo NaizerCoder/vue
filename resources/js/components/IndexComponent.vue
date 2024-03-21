@@ -52,6 +52,7 @@
 </template>
 <script>
 export default {
+
     name: "IndexComponent",
     data() {
         return {
@@ -65,8 +66,9 @@ export default {
 
     mounted() {
         this.getPerson()
+        this.$parent.thisComponent('Index')
+        this.$parent.$refs.create.thisComponent('Index')
     },
-
     methods: {
         getPerson() {
             axios.get('/api/people')
@@ -103,6 +105,10 @@ export default {
         isEdit(id){
 
             return this.editPerson === id
+        },
+
+        thisComponent(from){
+            console.log(`This is IndexComponent from ${from}`);
         }
     },
 }

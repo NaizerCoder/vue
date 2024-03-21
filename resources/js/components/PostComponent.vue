@@ -1,7 +1,7 @@
 <template>
     <div>
-        <IndexComponent></IndexComponent>
-        <CreateComponent></CreateComponent>
+        <IndexComponent ref="index"></IndexComponent>
+        <CreateComponent ref="create"></CreateComponent>
     </div>
 
 </template>
@@ -16,6 +16,18 @@ export default {
             persons: null,
         }
     },
+    mounted() {
+        console.log(this.$refs.index.thisComponent('Post'))
+        console.log(this.$refs.create.thisComponent('Post'))
+
+    },
+
+    methods: {
+        thisComponent(from){
+            console.log(`This is PostComponent from ${from}`);
+        }
+    },
+
     components: {
         CreateComponent,
         IndexComponent
