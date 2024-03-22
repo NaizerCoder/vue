@@ -1,12 +1,12 @@
 <template>
     <div>
-        This is POST_COMPONENT
+        This is TAG_COMPONENT
     </div>
 </template>
 
 <script>
 export default {
-    name: "PostComponent"
+    name: "TagComponent"
 }
 </script>
 

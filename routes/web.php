@@ -1,21 +1,16 @@
 <?php
 
-use App\Http\Controllers\Person\StoreController;
+use App\Http\Controllers\IndexController;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('app');
-});
+//Route::get('/', function () {
+//    return view('app');
+//});
 
 Auth::routes();
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-/*
-Route::group(['namespace' => 'App\Http\Controllers\Person', 'prefix' => 'people'], function () {
-    Route::post('/', 'StoreController');
-
-});
-*/
+Route::get('/{page}', IndexController::class)->where('page','.*');
 
 Route::fallback(function ()
 {
