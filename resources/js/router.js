@@ -1,19 +1,17 @@
-import Vue from 'vue/dist/vue.esm-bundler'
-import VueRouter from 'vue-router'
-import PostComponent from "@/components/PostComponent.vue";
-Vue.use(VueRouter)
+import * as VueRouter from "vue-router";
 
-export default new VueRouter({
+export default VueRouter.createRouter ({
 
-    mode: 'history',
-    routes:[
+    history: VueRouter.createWebHistory('/'),
+    routes: [
         {
-            path:'posts',
-            component: PostComponent
+            path: '/people',
+            component: () => import('./components/Person/Index.vue'),
+            name: 'person.index'
+        },
 
-        }
-
-    ]
-
+    ],
 })
+
+
 
