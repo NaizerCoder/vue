@@ -3,7 +3,8 @@ import {createApp} from 'vue/dist/vue.esm-bundler'
 import Index from "@/components/Index.vue";
 import router from "./router.js";
 
-import '../sass/app.scss'
+// import '../sass/app.scss'
+import "bootstrap/dist/css/bootstrap.min.css";
 import './bootstrap';
 
 const app = createApp({

@@ -23,7 +23,7 @@ class StoreRequest extends FormRequest
     {
         return [
             'name' => 'string',
-            'age' =>'string',
+            'age' =>'integer',
             'job' => 'string'
         ];
     }
