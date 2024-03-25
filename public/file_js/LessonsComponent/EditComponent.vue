@@ -35,7 +35,7 @@ export default {
 
     },
     methods: {
-        updatePerson(id) {
+        updatePerson() {
 
             this.$parent.editPerson = null
             axios.patch(`api/people/${id}`, {name: this.name, age: this.age, job: this.job})

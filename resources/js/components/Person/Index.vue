@@ -1,11 +1,11 @@
 <template>
-    <div class="w-25">
-        <table class="table">
+    <div class="w-50 p-3">
+        <table class="table table-bordered">
             <thead>
             <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Age</th>
-                <th scope="col">Job</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Job</th>
             </tr>
             </thead>
             <tbody v-for="person in persons">
@@ -39,7 +39,6 @@ export default {
                     this.persons = result.data
                 })
         }
-
     }
 }
 </script>
