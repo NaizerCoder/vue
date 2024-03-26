@@ -46,10 +46,9 @@ export default {
 
             axios.patch(`/api/people/${this.uid}`, {name: this.name, age: this.age, job: this.job})
                 .then(result => {
-                    console.log(result.data);
+                    this.$router.push({name: 'person.show', params:{ id: this.id} })
                 })
         },
-
     }
 }
 </script>
