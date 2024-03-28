@@ -11,7 +11,9 @@
             </thead>
             <tbody v-for="person in persons">
             <tr>
-                <td>{{ person.name }}</td>
+                <td>
+                    <router-link :to="{ name: 'person.show', params:{ id: person.id} }">{{ person.name }}</router-link>
+                </td>
                 <td>{{ person.age }}</td>
                 <td>{{ person.job }}</td>
                 <td>
@@ -33,7 +35,7 @@ export default {
 
     data() {
         return {
-            persons: null,
+            persons: {},
         }
     },
     mounted() {
@@ -43,14 +45,15 @@ export default {
         getPerson() {
             axios.get('/api/people')
                 .then(result => {
-                    this.persons = result.data
+                    console.log(result);
+                    this.persons = result.data.data;
                 })
         },
 
         deletePerson(id) {
             axios.delete(`/api/people/${id}`)
                 .then(result => {
-                    console.log(result.data);
+                    //console.log(result.data);
                     this.getPerson()
                 })
         },

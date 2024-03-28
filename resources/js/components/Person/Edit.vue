@@ -36,9 +36,9 @@ export default {
         getPerson() {
             axios.get(`/api/people/${this.uid}`)
                 .then(result => {
-                    this.name = result.data.name
-                    this.age = result.data.age
-                    this.job = result.data.job
+                    this.name = result.data.data.name
+                    this.age = result.data.data.age
+                    this.job = result.data.data.job
                 })
         },
 

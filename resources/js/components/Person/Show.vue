@@ -28,7 +28,7 @@ export default {
     name: "Show",
     data() {
         return {
-            person: null,
+            person: {},
             uid: this.$route.params.id
         }
     },
@@ -39,7 +39,11 @@ export default {
         getPerson() {
             axios.get(`/api/people/${this.uid}`)
                 .then(result => {
-                    this.person = result.data
+                    //console.log(result.data.data);
+                    this.person.name = result.data.data.name;
+                    this.person.age = result.data.data.age;
+                    this.person.job = result.data.data.job;
+
                 })
         }
     }
